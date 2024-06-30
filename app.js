@@ -4,14 +4,27 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// dotenv
+require('dotenv').config(); 
+
 // import mongoose
 const mongoose = require('mongoose');
 
 // connect to mongoose
+// mongoose.set("bufferCommands", false);
 mongoose
-  .connect("mongodb://localhost/db-mongoose23")
-  .then(() => console.log("Database connected successfully"))
-  .catch((err) => console.error("Database connection error:", err));
+  .connect(
+    process.env.MONGODB_URI,
+    {
+      serverSelectionTimeoutMS: 1000, // Tingkatkan waktu timeout menjadi 30 detik
+    }
+  )
+  .then(() => {
+    console.log("Successfully connected to MongoDB");
+  })
+  .catch((err) => {
+    console.error("Failed to connect to MongoDB", err);
+  });
 
 
 var indexRouter = require('./routes/index');
