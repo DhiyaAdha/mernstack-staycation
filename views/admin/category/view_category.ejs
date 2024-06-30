@@ -10,9 +10,11 @@
     <!-- Main Content -->
     <div id="content">
       <%- include('../../partials/navbar.ejs') %>
-
+      
       <!-- Begin Page Content -->
       <div class="container-fluid">
+        <%- include('../../partials/message.ejs') %>
+
         <!-- Page Heading -->
         <h1 class="h3 mb-4 text-gray-800">Category</h1>
         <!-- end heading -->
@@ -20,7 +22,6 @@
         <!-- data table -->
         <%- include('table_category.ejs') %>
         <!-- data table end -->
-
       </div>
       <!-- /.container-fluid -->
     </div>
@@ -70,19 +71,18 @@
   </div>
 </div>
 <!-- modal part -->
-<%- include('add_modal.ejs') %>
-<%- include('edit_modal.ejs') %>
+<%- include('add_modal.ejs') %> <%- include('edit_modal.ejs') %>
 <!-- end modal part -->
 
 <%- include ('../../partials/js.ejs') %>
 
 <script>
   console.log("Script loaded");
-  $('#dataTable').on('click', '.button-update', function () {
-    let id = $(this).data('id');
-    let name = $(this).data('name');
-    $('#edit-modal').modal('show');
-    $('.id').val(id);
-    $('.name').val(name);
+  $("#dataTable").on("click", ".button-update", function () {
+    let id = $(this).data("id");
+    let name = $(this).data("name");
+    $("#edit-modal").modal("show");
+    $(".id").val(id);
+    $(".name").val(name);
   });
 </script>
