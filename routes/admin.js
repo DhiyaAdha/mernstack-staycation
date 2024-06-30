@@ -6,6 +6,7 @@ router.get('/dashboard', adminController.viewDashboard);
 // category
 router.get('/category', adminController.viewCategory);
 router.post('/category', adminController.addCategory);
+router.put('/category', adminController.editCategory)
 
 // bank
 router.get('/bank', adminController.viewBank);
