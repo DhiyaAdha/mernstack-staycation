@@ -2,47 +2,67 @@ const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema;
 
 const bookingSchema = new mongoose.Schema({
-  title: {
+  bookingStartDate: {
+    type: Date,
+    required: true,
+  },
+  bookingEndDate: {
+    type: Date,
+    required: true,
+  },
+  invoice: {
     type: String,
     required: true,
   },
-  price: {
+  itemId: {
+    _id: {
+      type: ObjectId,
+      ref: "Item",
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+    price: {
+      type: Number,
+      required: true,
+    },
+    duration: {
+      type: Number,
+      required: true,
+    },
+  },
+  total: {
     type: Number,
     required: true,
   },
-  country: {
-    type: String,
-    default: "Indonesia",
+  memberId: {
+    type: ObjectId,
+    ref: "Member",
   },
-  city: {
-    type: String,
-    required: true,
+  bankId: {
+    type: ObjectId,
+    ref: "Bank",
   },
-  isPopular: {
-    type: Boolean,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
-  imageId: [
-    {
-      type: ObjectId,
-      ref: "Image",
+  payments: {
+    proofPayment: {
+      type: String,
+      required: true,
     },
-  ],
-  featured: [
-    {
-      type: ObjectId,
-      ref: "Feature",
+    bankFrom: {
+      type: String,
+      required: true,
     },
-  ],
-  activityId: [
-    {
-      type: ObjectId,
-      ref: "Activity",
+    accountHolder: {
+      type: String,
+      required: true,
     },
-  ],
+    status: {
+      type: String,
+      default: "Proses",
+    },
+  },
 });
 
-module.exports = mongoose.model("con", bookingSchema);
+module.exports = mongoose.model("Booking", bookingSchema);
