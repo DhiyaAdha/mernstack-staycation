@@ -27,6 +27,12 @@ module.exports = {
         res.redirect('/admin/category');
     },
 
+    deleteCategory: async(req, res) => {
+        const { id } = req.params;
+        await Category.deleteOne({ _id: id });
+        res.redirect('/admin/category');
+    },
+
     viewBank: (req, res) => {
         res.render('admin/bank/view_bank')
     },
